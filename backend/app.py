@@ -65,20 +65,11 @@ def process_data():
     data = request.get_json()  # Parse JSON from request body
     text = data.get('text', '')
 
-    # Create a response with some basic text operations
-    response = {
-        'original': text,
-        'uppercase': text.upper(),
-        'length': len(text)
-    }
 
     try:
         return json.dumps(get_recommendations(text).to_list())
     except:
         return json.dumps(['Movie not found'])
-
-    #return jsonify(get_recommendations(text))
-    #return jsonify(response)  # Return JSON response
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
